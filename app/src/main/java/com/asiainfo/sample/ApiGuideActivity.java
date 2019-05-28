@@ -8,14 +8,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
+import com.library.permission.SoulPermission;
+import com.library.permission.bean.Permission;
+import com.library.permission.bean.Permissions;
+import com.library.permission.bean.Special;
+import com.library.permission.callbcak.CheckRequestPermissionListener;
+import com.library.permission.callbcak.CheckRequestPermissionsListener;
+import com.library.permission.callbcak.SpecialPermissionListener;
 import com.qw.sample.R;
-import com.qw.soul.permission.Permission;
-import com.qw.soul.permission.bean.Permission;
-import com.qw.soul.permission.bean.Permissions;
-import com.qw.soul.permission.bean.Special;
-import com.qw.soul.permission.callbcak.CheckRequestPermissionListener;
-import com.qw.soul.permission.callbcak.CheckRequestPermissionsListener;
-import com.qw.soul.permission.callbcak.SpecialPermissionListener;
 
 public class ApiGuideActivity extends AppCompatActivity {
 
@@ -27,12 +27,12 @@ public class ApiGuideActivity extends AppCompatActivity {
 
     public void checkSinglePermission(View view) {
         //you can also use checkPermissions() for a series of permissions
-        Permission checkResult = Permission.getInstance().checkSinglePermission(Manifest.permission.ACCESS_FINE_LOCATION);
+        Permission checkResult = SoulPermission.getInstance().checkSinglePermission(Manifest.permission.ACCESS_FINE_LOCATION);
         Toast.makeText(this, checkResult.toString(), Toast.LENGTH_SHORT).show();
     }
 
     public void requestSinglePermission(View view) {
-        Permission.getInstance().checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION,
+        SoulPermission.getInstance().checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION,
                 //if you want do noting or no need all the callbacks you may use SimplePermissionAdapter instead
                 new CheckRequestPermissionListener() {
                     @Override
@@ -50,7 +50,7 @@ public class ApiGuideActivity extends AppCompatActivity {
     }
 
     public void requestPermissions(View view) {
-        Permission.getInstance().checkAndRequestPermissions(
+        SoulPermission.getInstance().checkAndRequestPermissions(
                 Permissions.build(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
                 new CheckRequestPermissionsListener() {
@@ -69,7 +69,7 @@ public class ApiGuideActivity extends AppCompatActivity {
     }
 
     public void requestSinglePermissionWithRationale(View view) {
-        Permission.getInstance().checkAndRequestPermission(Manifest.permission.READ_CONTACTS,
+        SoulPermission.getInstance().checkAndRequestPermission(Manifest.permission.READ_CONTACTS,
                 new CheckRequestPermissionListener() {
                     @Override
                     public void onPermissionOk(Permission permission) {
@@ -92,7 +92,7 @@ public class ApiGuideActivity extends AppCompatActivity {
     }
 
     public void checkNotification(View view) {
-        boolean checkResult = Permission.getInstance().checkSpecialPermission(Special.NOTIFICATION);
+        boolean checkResult = SoulPermission.getInstance().checkSpecialPermission(Special.NOTIFICATION);
         if (checkResult) {
             Toast.makeText(view.getContext(), "Notification is enable", Toast.LENGTH_SHORT).show();
         } else {
@@ -106,7 +106,7 @@ public class ApiGuideActivity extends AppCompatActivity {
 
     public void checkAndRequestNotification(final View view) {
         //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
-        Permission.getInstance().checkAndRequestPermission(Special.NOTIFICATION, new SpecialPermissionListener() {
+        SoulPermission.getInstance().checkAndRequestPermission(Special.NOTIFICATION, new SpecialPermissionListener() {
             @Override
             public void onGranted(Special permission) {
                 Toast.makeText(ApiGuideActivity.this, "Notification is enable now ", Toast.LENGTH_SHORT).show();
@@ -125,7 +125,7 @@ public class ApiGuideActivity extends AppCompatActivity {
 
     public void checkAndRequestSystemAlert(View view) {
         //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
-        Permission.getInstance().checkAndRequestPermission(Special.SYSTEM_ALERT, new SpecialPermissionListener() {
+        SoulPermission.getInstance().checkAndRequestPermission(Special.SYSTEM_ALERT, new SpecialPermissionListener() {
             @Override
             public void onGranted(Special permission) {
                 Toast.makeText(ApiGuideActivity.this, "System Alert is enable now ", Toast.LENGTH_SHORT).show();
@@ -140,7 +140,7 @@ public class ApiGuideActivity extends AppCompatActivity {
 
     public void checkAndRequestUnKnownSource(View view) {
         //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
-        Permission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
+        SoulPermission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
             @Override
             public void onGranted(Special permission) {
                 Toast.makeText(ApiGuideActivity.this, "install unKnown app  is enable now", Toast.LENGTH_SHORT).show();
@@ -154,11 +154,11 @@ public class ApiGuideActivity extends AppCompatActivity {
     }
 
     public void goApplicationSettings(View view) {
-        Permission.getInstance().goPermissionSettings();
+        SoulPermission.getInstance().goPermissionSettings();
     }
 
     public void getTopActivity(View view) {
-        Activity activity = Permission.getInstance().getTopActivity();
+        Activity activity = SoulPermission.getInstance().getTopActivity();
         if (null != activity) {
             Toast.makeText(activity, activity.getClass().getSimpleName() + " " + activity.hashCode(), Toast.LENGTH_SHORT).show();
         }

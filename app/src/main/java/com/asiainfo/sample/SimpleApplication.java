@@ -2,7 +2,7 @@ package com.asiainfo.sample;
 
 import android.app.Application;
 import android.util.Log;
-import com.qw.soul.permission.Permission;
+import com.library.permission.SoulPermission;
 
 
 public class SimpleApplication extends Application {
@@ -10,7 +10,7 @@ public class SimpleApplication extends Application {
     public void onCreate() {
         super.onCreate();
         Log.d(SimpleApplication.class.getSimpleName(), "appInit");
-        Permission.setDebug(true);
+        SoulPermission.setDebug(true);
         //no necessary
 //        Permission.init(this);
     }
