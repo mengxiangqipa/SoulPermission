@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
-import com.asiainfo.sample.utils.Utils;
-import com.asiainfo.sample.utils.UtilsWithPermission;
+import com.asiainfo.sample.util.Utils;
+import com.asiainfo.sample.util.UtilsWithPermission;
 import com.qw.sample.R;
 
 public class AfterActivity extends AppCompatActivity {

@@ -1,4 +1,4 @@
-package com.asiainfo.sample.utils;
+package com.asiainfo.sample.util;
 
 import android.Manifest;
 import android.app.Activity;

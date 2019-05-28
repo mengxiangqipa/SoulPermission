@@ -1,4 +1,4 @@
-package com.asiainfo.sample.utils;
+package com.asiainfo.sample.util;
 
 import android.app.Activity;
 import android.content.Context;

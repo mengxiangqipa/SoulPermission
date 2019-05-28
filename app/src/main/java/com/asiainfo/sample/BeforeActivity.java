@@ -12,7 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 import com.qw.sample.R;
-import com.asiainfo.sample.utils.Utils;
+import com.asiainfo.sample.util.Utils;
 
 import static android.os.Build.VERSION_CODES.M;
 
