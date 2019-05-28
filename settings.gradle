@@ -1,1 +1,1 @@
-include ':soulpermission', ':sample'
+include ':Library-Permission', ':app'

@@ -1,4 +1,4 @@
-# SoulPermission
+# Permission
  [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 #### Android权限适配的更优解决方案：
  -  解耦Activity和Fragment、不再需要Context、不再需要onPermissionResult
@@ -12,7 +12,7 @@
 
 ```java
 dependencies {
-    implementation 'com.qw:soulpermission:1.1.6'
+    implementation 'com.qw:Permission:1.1.6'
 }
 
 ```
@@ -21,7 +21,7 @@ dependencies {
 #### 基本用法：
 - 一句话版本完成自动判断、权限检查、请求、后续操作：
 ```java
-  SoulPermission.getInstance().checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION,
+  Permission.getInstance().checkAndRequestPermission(Manifest.permission.ACCESS_FINE_LOCATION,
                 //if you want do noting or no need all the callbacks you may use SimplePermissionAdapter instead
                 new CheckRequestPermissionListener() {
                     @Override
@@ -41,7 +41,7 @@ dependencies {
 - 也可以一次请求多项权限
 
 ```java
-  SoulPermission.getInstance().checkAndRequestPermissions(
+  Permission.getInstance().checkAndRequestPermissions(
                 Permissions.build(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
                 //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
                 new CheckRequestPermissionsListener() {
@@ -62,7 +62,7 @@ dependencies {
 - 包含shouldShowRequestPermissionRationale的情形
 
 ```java
- SoulPermission.getInstance().checkAndRequestPermission(Manifest.permission.READ_CONTACTS,
+ Permission.getInstance().checkAndRequestPermission(Manifest.permission.READ_CONTACTS,
                 new CheckRequestPermissionListener() {
                     @Override
                     public void onPermissionOk(Permission permission) {
@@ -88,18 +88,18 @@ dependencies {
 
 ```java
 //you can also use checkPermissions() for a series of permissions
-Permission checkResult = SoulPermission.getInstance().checkSinglePermission(Manifest.permission.ACCESS_FINE_LOCATION);
+Permission checkResult = Permission.getInstance().checkSinglePermission(Manifest.permission.ACCESS_FINE_LOCATION);
 ```
 - 检查特殊权限[通知权限]
 
 ```java
- boolean checkResult = SoulPermission.getInstance().checkSpecialPermission(Special.NOTIFICATION);
+ boolean checkResult = Permission.getInstance().checkSpecialPermission(Special.NOTIFICATION);
 ```
 - 检查并请求特殊权限[未知应用安装]
 
 ```java
  //if you want do noting or no need all the callbacks you may use SimpleSpecialPermissionAdapter instead
-    SoulPermission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
+    Permission.getInstance().checkAndRequestPermission(Special.UNKNOWN_APP_SOURCES, new SpecialPermissionListener() {
         @Override
         public void onGranted(Special permission) {
                 Toast.makeText(ApiGuideActivity.this, "install unKnown app  is enable now", Toast.LENGTH_SHORT).show();
@@ -116,17 +116,17 @@ Permission checkResult = SoulPermission.getInstance().checkSinglePermission(Mani
 
 
 ```java
-SoulPermission.getInstance().goPermissionSettings();
+Permission.getInstance().goPermissionSettings();
 ```
 - 设置debug模式(看日志打印)
 
 ```java
-SoulPermission.setDebug(true);
+Permission.setDebug(true);
 ```
 
 #### 注意事项：
 - 最低支持Android 4.0(Api level 14)
-- SoulPermission内部自动初始化，如果你项目中使用了Tinker等使用了替换Application方式从而可能会导致SoulPermission内部初始化失败的框架(打开debug通过在任意页面请求权限可以通过日志看到是否初始化失败)，请手动在你的Application类中调用init即可。
+- Permission内部自动初始化，如果你项目中使用了Tinker等使用了替换Application方式从而可能会导致Permission内部初始化失败的框架(打开debug通过在任意页面请求权限可以通过日志看到是否初始化失败)，请手动在你的Application类中调用init即可。
 
 ```java
 //invoke init in your application when auto init failed
@@ -135,7 +135,7 @@ public class SimpleApplication extends Application {
     public void onCreate() {
         super.onCreate();
         //no necessary
-        SoulPermission.init(this);
+        Permission.init(this);
     }
 }
 
