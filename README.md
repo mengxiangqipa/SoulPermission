@@ -25,7 +25,7 @@ dependencies {
                 //if you want do noting or no need all the callbacks you may use SimplePermissionAdapter instead
                 new CheckRequestPermissionListener() {
                     @Override
-                    public void onPermissionOk(Permission permission) {
+                    public void onPermissionGranted(Permission permission) {
                         Toast.makeText(ApiGuideActivity.this, permission.toString() +
                                 "\n is ok , you can do your operations", Toast.LENGTH_SHORT).show();
                     }
@@ -46,7 +46,7 @@ dependencies {
                 //if you want do noting or no need all the callbacks you may use SimplePermissionsAdapter instead
                 new CheckRequestPermissionsListener() {
                     @Override
-                    public void onAllPermissionOk(Permission[] allPermissions) {
+                    public void onAllPermissionGranted(Permission[] allPermissions) {
                         Toast.makeText(ApiGuideActivity.this, allPermissions.length + "permissions is ok" +
                                 " \n  you can do your operations", Toast.LENGTH_SHORT).show();
                     }
@@ -65,7 +65,7 @@ dependencies {
  Permission.getInstance().checkAndRequestPermission(Manifest.permission.READ_CONTACTS,
                 new CheckRequestPermissionListener() {
                     @Override
-                    public void onPermissionOk(Permission permission) {
+                    public void onPermissionGranted(Permission permission) {
                         Toast.makeText(ApiGuideActivity.this, permission.toString() +
                                 "\n is ok , you can do your operations", Toast.LENGTH_SHORT).show();
                     }

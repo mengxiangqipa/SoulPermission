@@ -11,7 +11,7 @@ public interface CheckRequestPermissionsListener {
      *
      * @param allPermissions 权限实体类
      */
-    void onAllPermissionOk(Permission[] allPermissions);
+    void onAllPermissionGranted(Permission[] allPermissions);
 
     /**
      * 不ok的权限，被拒绝或者未授予

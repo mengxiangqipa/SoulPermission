@@ -130,8 +130,8 @@ public class SoulPermission {
     public void checkAndRequestPermission(@NonNull final String permissionName, @NonNull final CheckRequestPermissionListener listener) {
         checkAndRequestPermissions(Permissions.build(permissionName), new CheckRequestPermissionsListener() {
             @Override
-            public void onAllPermissionOk(com.library.permission.bean.Permission[] allPermissions) {
-                listener.onPermissionOk(allPermissions[0]);
+            public void onAllPermissionGranted(com.library.permission.bean.Permission[] allPermissions) {
+                listener.onPermissionGranted(allPermissions[0]);
             }
 
             @Override
@@ -156,7 +156,7 @@ public class SoulPermission {
         // all permissions ok
         if (refusedPermissionList.length == 0) {
             PermissionDebug.d(TAG, "all permissions ok");
-            listener.onAllPermissionOk(checkResult);
+            listener.onAllPermissionGranted(checkResult);
             return;
         }
         //can request runTime permission
@@ -333,15 +333,15 @@ public class SoulPermission {
                     @Override
                     public void onPermissionResult(com.library.permission.bean.Permission[] permissions) {
                         //this list contains all the refused permissions after request
-                        List<com.library.permission.bean.Permission> refusedListAfterRequest = new LinkedList<>();
-                        for (com.library.permission.bean.Permission requestResult : permissions) {
+                        List<Permission> refusedListAfterRequest = new LinkedList<>();
+                        for (Permission requestResult : permissions) {
                             if (!requestResult.isGranted()) {
                                 refusedListAfterRequest.add(requestResult);
                             }
                         }
                         if (refusedListAfterRequest.size() == 0) {
                             PermissionDebug.d(TAG, "all permission are request ok");
-                            listener.onAllPermissionOk(permissionsToRequest);
+                            listener.onAllPermissionGranted(permissionsToRequest);
                         } else {
                             PermissionDebug.d(TAG, "some permission are refused size=" + refusedListAfterRequest.size());
                             listener.onPermissionDenied(PermissionTools.convert(refusedListAfterRequest));

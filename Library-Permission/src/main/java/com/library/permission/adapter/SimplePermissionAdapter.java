@@ -7,7 +7,7 @@ import com.library.permission.callbcak.CheckRequestPermissionListener;
 public abstract class SimplePermissionAdapter implements CheckRequestPermissionListener {
 
     @Override
-    public void onPermissionOk(Permission permission) {
+    public void onPermissionGranted(Permission permission) {
 
     }
 

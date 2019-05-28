@@ -11,8 +11,6 @@ import com.library.permission.debug.PermissionDebug;
 
 public class Permission {
 
-    private static volatile Permission instance;
-
     private static final String TAG = Permission.class.getSimpleName();
 
     private static final int FLAG_IS_GRANTED = 1;

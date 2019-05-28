@@ -36,7 +36,7 @@ public class AfterActivity extends AppCompatActivity {
 //        Permission.getInstance()
 //                .checkAndRequestPermission(Manifest.permission.CALL_PHONE, new CheckRequestPermissionListener() {
 //                    @Override
-//                    public void onPermissionOk(Permission permission) {
+//                    public void onPermissionGranted(Permission permission) {
 //                        Utils.makeCall(AfterActivity.this, "10086");
 //                    }
 //

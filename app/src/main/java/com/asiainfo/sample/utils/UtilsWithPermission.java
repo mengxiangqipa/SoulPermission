@@ -6,9 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import com.asiainfo.sample.adapter.CheckPermissionAdapter;
-import com.asiainfo.sample.adapter.CheckPermissionWithRationaleAdapter;
 import com.library.permission.SoulPermission;
+import com.library.permission.adapter.CheckPermissionAdapter;
+import com.library.permission.adapter.CheckPermissionWithRationaleAdapter;
 import com.library.permission.bean.Permission;
 
 
@@ -28,7 +28,7 @@ public class UtilsWithPermission {
                             }
                         }) {
                     @Override
-                    public void onPermissionOk(Permission permission) {
+                    public void onPermissionGranted(Permission permission) {
                         Intent intent = new Intent(Intent.ACTION_CALL);
                         Uri data = Uri.parse("tel:" + phoneNumber);
                         intent.setData(data);
@@ -47,7 +47,7 @@ public class UtilsWithPermission {
         SoulPermission.getInstance().checkAndRequestPermission(Manifest.permission.READ_CONTACTS,
                 new CheckPermissionAdapter() {
                     @Override
-                    public void onPermissionOk(Permission permission) {
+                    public void onPermissionGranted(Permission permission) {
                         activity.startActivityForResult(new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI), requestCode);
                     }
                 });
